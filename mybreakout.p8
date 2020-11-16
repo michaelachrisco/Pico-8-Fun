@@ -10,8 +10,11 @@ ball_y=10
 ball_dy=1
 ball_r=2
 ball_dr=1
---ball color yellow!
-col=10
+
+pad_x=30
+pad_y=120
+pad_w=30
+pad_h=4
 
 function _init()
  cls()
@@ -20,14 +23,11 @@ end
 function _update()
  ball_x=ball_x+ball_dx
  ball_y=ball_y+ball_dy 
+ --ball_r=ball_r+ball_dr
  
- ball_r=ball_r+ball_dr
- 
- --col=col+1
- 
- if ball_r > 3 or ball_r < 2 then
-  ball_dr = -ball_dr
- end
+ --if ball_r > 3 or ball_r < 2 then
+ -- ball_dr = -ball_dr
+ --end
  
  if ball_x > 127 or ball_x < 0 then
   ball_dx = -ball_dx
@@ -43,7 +43,10 @@ end
 
 function _draw()
  cls()
- circfill(ball_x,ball_y,ball_r,col)
+ rectfill(0,0,127,127,1)
+ circfill(ball_x,ball_y,ball_r,10)
+ rectfill(pad_x,pad_y,pad_x+pad_w,pad_y+pad_h,6)
+ 
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
