@@ -5,13 +5,14 @@ __lua__
 --by: mac
 
 ball_x=5
-ball_dx=1
+ball_dx=2
 ball_y=10
-ball_dy=1
+ball_dy=2
 ball_r=2
 ball_dr=1
 
 pad_x=30
+pad_dx=0
 pad_y=120
 pad_w=30
 pad_h=4
@@ -21,13 +22,24 @@ function _init()
 end
 
 function _update()
+ buttpress=false
  ball_x=ball_x+ball_dx
- ball_y=ball_y+ball_dy 
- --ball_r=ball_r+ball_dr
+ ball_y=ball_y+ball_dy
  
- --if ball_r > 3 or ball_r < 2 then
- -- ball_dr = -ball_dr
- --end
+ if btn(0) then
+  pad_dx= -5
+  buttpress=true
+ end
+ 
+ if btn(1) then
+  pad_dx= 5
+  buttpress=true
+ end 
+ 
+ if not buttpress then
+  pad_dx=pad_dx/2
+ end
+ pad_x+=pad_dx
  
  if ball_x > 127 or ball_x < 0 then
   ball_dx = -ball_dx
