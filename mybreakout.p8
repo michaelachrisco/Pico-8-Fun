@@ -4,9 +4,9 @@ __lua__
 --mybreakout.pb
 --by: mac
 
-ball_x=5
+ball_x=30
 ball_dx=2
-ball_y=10
+ball_y=5
 ball_dy=2
 ball_r=2
 ball_dr=1
@@ -16,6 +16,7 @@ pad_dx=0
 pad_y=120
 pad_w=30
 pad_h=4
+pad_color=7
 
 function _init()
  cls()
@@ -51,14 +52,40 @@ function _update()
   sfx(0)
  end
  
+ if ball_box(pad_x,pad_y,pad_w,pad_h) then
+  --deal with collision
+  pad_color+=1
+ end
+ 
 end
 
 function _draw()
  cls()
  rectfill(0,0,127,127,1)
  circfill(ball_x,ball_y,ball_r,10)
- rectfill(pad_x,pad_y,pad_x+pad_w,pad_y+pad_h,6)
+ rectfill(pad_x,pad_y,pad_x+pad_w,pad_y+pad_h,pad_color)
  
+end
+
+function ball_box(box_x, box_y, box_w, box_h)
+ if ball_y-ball_r > box_y+box_h then
+  return false
+ end
+ 
+ if ball_y+ball_r < box_y then
+  return false
+ end
+ 
+ if ball_x-ball_r > box_x+box_w then
+  return false
+ end
+ 
+ if ball_x+ball_r < box_x then
+  return false
+ end
+ 
+ 
+ return true
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
