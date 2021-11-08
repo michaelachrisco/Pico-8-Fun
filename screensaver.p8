@@ -5,6 +5,7 @@ __lua__
 -- mac
 
 function reset()
+ cls()
  xpos=rnd(122)
  ypos=rnd(122)
  xposspeed=rnd(5) + 1
@@ -12,9 +13,12 @@ function reset()
 end
 
 
+symbols = {"▒", "★", "♥", "😐", "∧", "⧗", "ˇ"}
+function rndt(t) return t[1+flr(rnd(#t))] end
+
 reset()
 col=0
-you="♥"
+you=rndt(symbols)
 numloops=0
 
 
@@ -30,6 +34,7 @@ function _update()
  
  if numloops>1000 then
   numloops = 0
+  you=rndt(symbols)
   reset()
  end
  
@@ -44,7 +49,7 @@ function _update()
 end
 
 function _draw()
- cls()
+ --cls()
  print(you,xpos,ypos,col)
 end
 __gfx__
